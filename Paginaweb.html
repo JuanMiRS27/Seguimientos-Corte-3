@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Guía Extensa · Java & Python</title>
+<style>
+:root{
+  --bg:#0a0a0a; --ink:#00ff6a; --muted:#00cc55; --primary:#00ff88; --accent:#00cc66;
+  --surface:#000000; --border:1px solid rgba(0,255,100,.2); --radius:14px; --soft:#0f0f0f; --code:#001a00; --code-ink:#00ff99;
+}
+body{margin:0;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;}
+header{background:linear-gradient(120deg,#003300,#0a0a0a);text-align:center;padding:2.5rem 1rem;border-bottom:var(--border)}
+header h1{font-size:2rem;margin:0;color:var(--primary)}
+section{max-width:1100px;margin:2rem auto;background:var(--surface);border:var(--border);border-radius:var(--radius);padding:2rem;box-shadow:0 3px 8px rgba(0,255,100,.05);}
+h2{color:var(--primary);border-bottom:3px solid var(--accent);padding-bottom:.5rem;}
+h3{color:var(--accent)}
+pre{background:var(--code);color:var(--code-ink);padding:1rem;border-radius:var(--radius);overflow:auto;}
+.card{margin-bottom:1.8rem;animation:fadeInUp .8s ease forwards;opacity:0;}
+@keyframes fadeInUp{to{opacity:1;transform:none;}from{opacity:0;transform:translateY(15px);}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Guía Extensa · Java y Python</h1>
+  <p>Explicaciones detalladas, ejemplos amplios y análisis completos para cada concepto fundamental.</p>
+</header>
+
+<section>
+<h2>Java · Programación Orientada a Objetos</h2>
+
+<div class="card">
+<h3>Paradigma de Programación</h3>
+<p>Un paradigma de programación es una forma o modelo de pensamiento para diseñar soluciones en código. Java implementa principalmente el paradigma orientado a objetos, pero también puede incorporar características de paradigmas imperativos y concurrentes. Comprender los paradigmas ayuda al programador a seleccionar las herramientas conceptuales adecuadas para cada problema.</p>
+<p>En el paradigma orientado a objetos, los programas se estructuran en torno a entidades llamadas objetos, que agrupan datos (atributos) y comportamiento (métodos). Esto fomenta la modularidad, la reutilización de código y la abstracción del mundo real dentro del software.</p>
+</div>
+
+<div class="card">
+<h3>Programación Orientada a Objetos (POO)</h3>
+<p>La POO es el corazón del desarrollo con Java. Se basa en el modelado de objetos del mundo real para representar entidades lógicas dentro del sistema. Los objetos tienen un ciclo de vida, interactúan entre sí enviándose mensajes y pueden heredar o compartir comportamientos mediante jerarquías de clases.</p>
+<p>Sus pilares fundamentales son:</p>
+<ul>
+<li><b>Abstracción:</b> Permite crear representaciones simplificadas de realidades complejas, centrándose en los aspectos esenciales.</li>
+<li><b>Encapsulamiento:</b> Protege los datos internos de un objeto, evitando accesos indebidos y permitiendo modificar la implementación sin afectar a los usuarios del objeto.</li>
+<li><b>Herencia:</b> Favorece la reutilización del código y la especialización mediante clases derivadas que extienden a otras.</li>
+<li><b>Polimorfismo:</b> Permite que diferentes objetos respondan de manera distinta a un mismo mensaje o método.</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Clases y Objetos</h3>
+<p>Una <b>clase</b> es una plantilla que define la estructura y comportamiento de un conjunto de objetos similares. Cada <b>objeto</b> es una instancia específica de esa clase, con su propio estado almacenado en variables de instancia. El diseño de clases bien estructuradas mejora la mantenibilidad y escalabilidad del sistema.</p>
+<pre><code>class Persona {
+  String nombre;
+  int edad;
+  
+  void saludar() {
+    System.out.println("Hola, soy " + nombre + " y tengo " + edad + " años.");
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Persona p = new Persona();
+    p.nombre = "Laura";
+    p.edad = 25;
+    p.saludar();
+  }
+}</code></pre>
+<p>En este ejemplo, la clase <code>Persona</code> define atributos y un método. Al crear una instancia, se almacena en memoria un objeto con esos atributos inicializados, capaz de ejecutar el método definido.</p>
+</div>
+
+<div class="card">
+<h3>Atributos, Métodos y Visibilidad</h3>
+<p>Los atributos representan el estado de un objeto, mientras que los métodos definen su comportamiento. Java utiliza modificadores de acceso para controlar la visibilidad de los miembros:</p>
+<ul>
+<li><b>public:</b> accesible desde cualquier lugar del programa.</li>
+<li><b>private:</b> solo visible dentro de la clase que lo define.</li>
+<li><b>protected:</b> visible dentro del mismo paquete y en las subclases.</li>
+</ul>
+<pre><code>class Cuenta {
+  private double saldo;
+  
+  public void depositar(double monto) {
+    if (monto > 0) saldo += monto;
+  }
+
+  public double getSaldo() {
+    return saldo;
+  }
+}
+</code></pre>
+<p>Este enfoque protege los datos internos de alteraciones externas. Gracias a la encapsulación, el código es más seguro, controlado y mantenible.</p>
+</div>
+
+<div class="card">
+<h3>Constructores y Sobrecarga</h3>
+<p>Un constructor es un método especial que inicializa los objetos al crearlos. En Java, los constructores comparten el nombre de la clase y pueden sobrecargarse, lo que significa que se pueden definir varios constructores con distintos parámetros.</p>
+<pre><code>class Punto {
+  int x, y;
+  
+  Punto() { this(0, 0); }
+  Punto(int x, int y) {
+    this.x = x; this.y = y;
+  }
+}
+
+public class Main {
+  public static void main(String[] args){
+    Punto p1 = new Punto();
+    Punto p2 = new Punto(3, 4);
+    System.out.println("Coordenadas: (" + p2.x + "," + p2.y + ")");
+  }
+}</code></pre>
+<p>La sobrecarga de métodos y constructores facilita la flexibilidad del código, permitiendo múltiples formas de inicializar o ejecutar una acción según los argumentos.</p>
+</div>
+
+<div class="card">
+<h3>Herencia, Agregación y Composición</h3>
+<p><b>Herencia:</b> mecanismo que permite crear nuevas clases basadas en otras ya existentes. La subclase hereda atributos y métodos de la superclase, pudiendo ampliar o redefinir su funcionalidad.</p>
+<p><b>Agregación:</b> relación en la que una clase contiene referencias a otras clases, pero estas pueden existir independientemente (por ejemplo, un <i>Auto</i> tiene un <i>Motor</i>).</p>
+<p><b>Composición:</b> relación más fuerte donde el ciclo de vida de los objetos dependientes está ligado al de su contenedor.</p>
+<pre><code>class Animal {
+  void sonido() { System.out.println("Sonido genérico"); }
+}
+class Perro extends Animal {
+  @Override
+  void sonido() { System.out.println("Guau guau"); }
+}
+
+class Motor {}
+class Auto {
+  private Motor motor = new Motor();
+}</code></pre>
+<p>El polimorfismo se evidencia al usar referencias del tipo de la clase padre para invocar métodos sobre objetos de subclases, manteniendo comportamiento dinámico.</p>
+</div>
+
+<div class="card">
+<h3>Clases y Métodos Abstractos</h3>
+<p>Las clases abstractas sirven como plantillas generales que definen el comportamiento común de las subclases. Los métodos abstractos obligan a las clases hijas a proporcionar su implementación, garantizando coherencia en la jerarquía.</p>
+<pre><code>abstract class Figura {
+  abstract double area();
+}
+
+class Rectangulo extends Figura {
+  double ancho, alto;
+  Rectangulo(double a, double h){ ancho=a; alto=h; }
+  double area(){ return ancho * alto; }
+}</code></pre>
+<p>Este enfoque permite definir estructuras genéricas y concretar detalles en subclases, promoviendo la reutilización y consistencia.</p>
+</div>
+
+<div class="card">
+<h3>Final, Interfaces y Polimorfismo</h3>
+<p>La palabra clave <code>final</code> evita que se modifiquen ciertos elementos. En variables, impide su reasignación; en métodos, su sobrescritura; y en clases, su herencia. Las interfaces definen contratos de comportamiento sin proveer implementación, promoviendo la programación orientada a interfaces.</p>
+<pre><code>interface Operable {
+  void ejecutar();
+}
+
+final class Proceso implements Operable {
+  public void ejecutar() {
+    System.out.println("Proceso en ejecución");
+  }
+}</code></pre>
+<p>El polimorfismo se refuerza al implementar múltiples interfaces o heredar clases con métodos sobrescritos, permitiendo que los objetos actúen según su tipo concreto en tiempo de ejecución.</p>
+</div>
+
+<div class="card">
+<h3>Excepciones</h3>
+<p>Las excepciones son mecanismos para gestionar errores o situaciones inesperadas sin detener el flujo normal del programa. Java distingue entre <b>checked exceptions</b> (verificadas) y <b>unchecked exceptions</b> (no verificadas). Su manejo correcto evita fallos críticos y mejora la robustez del software.</p>
+<pre><code>try {
+  int resultado = 10 / 0;
+} catch (ArithmeticException e) {
+  System.out.println("Error: división por cero");
+} finally {
+  System.out.println("Bloque finally ejecutado");
+}</code></pre>
+<p>También se pueden crear excepciones personalizadas extendiendo la clase <code>Exception</code> o <code>RuntimeException</code> para manejar casos específicos.</p>
+</div>
+
+<div class="card">
+<h3>Hilos y Concurrencia</h3>
+<p>Los hilos (<i>threads</i>) permiten la ejecución paralela de tareas. En Java pueden crearse extendiendo la clase <code>Thread</code> o implementando <code>Runnable</code>. La concurrencia mejora el rendimiento y la capacidad de respuesta de las aplicaciones.</p>
+<pre><code>class MiHilo extends Thread {
+  public void run() {
+    System.out.println("Ejecutando en hilo: " + getName());
+  }
+}
+
+public class Main {
+  public static void main(String[] args){
+    new MiHilo().start();
+  }
+}</code></pre>
+<p>Java también proporciona la librería <code>java.util.concurrent</code> que ofrece mecanismos avanzados como <code>ExecutorService</code> y <code>Future</code> para una gestión más eficiente de tareas simultáneas.</p>
+</div>
+
+<div class="card">
+<h3>Listas, Enum y Colecciones</h3>
+<p>Las colecciones en Java, como las listas (<code>List</code>), conjuntos (<code>Set</code>) y mapas (<code>Map</code>), permiten almacenar y manipular grupos de objetos. Los <code>enum</code> definen conjuntos de constantes que mejoran la legibilidad y evitan errores de valores inválidos.</p>
+<pre><code>import java.util.*;
+
+enum Dia {LUNES, MARTES, MIERCOLES, JUEVES, VIERNES}
+
+List<String> nombres = new ArrayList<>();
+nombres.add("Ana");
+nombres.add("Luis");
+
+for(String n : nombres)
+  System.out.println(n);
+</code></pre>
+<p>Las colecciones forman parte del framework <code>java.util</code> y son esenciales para trabajar con datos de forma flexible, soportando operaciones de filtrado, ordenamiento y búsqueda.</p>
+</div>
+
+<div class="card">
+<h3>JavaFX, Serialización y Manejo de Archivos</h3>
+<p><b>JavaFX:</b> plataforma moderna para construir interfaces gráficas con soporte de animaciones, estilos CSS y componentes personalizables.</p>
+<p><b>Serialización:</b> proceso de convertir un objeto en una secuencia de bytes para almacenarlo o transmitirlo. Requiere que la clase implemente <code>Serializable</code>.</p>
+<p><b>Manejo de archivos:</b> se realiza mediante clases como <code>File</code>, <code>FileReader</code> y <code>BufferedReader</code>, o usando la API <code>java.nio.file</code>.</p>
+<pre><code>// JavaFX
+public class HolaFX extends javafx.application.Application {
+  public void start(javafx.stage.Stage s){
+    javafx.scene.control.Label label = new javafx.scene.control.Label("Hola JavaFX");
+    s.setScene(new javafx.scene.Scene(new javafx.scene.layout.StackPane(label), 200, 100));
+    s.show();
+  }
+}
+
+// Serialización
+try(var out = new java.io.ObjectOutputStream(new java.io.FileOutputStream("dato.bin"))){
+  out.writeObject(new Persona());
+}
+
+// Lectura de archivos
+t try(var br = new java.io.BufferedReader(new java.io.FileReader("archivo.txt"))){
+  String linea;
+  while((linea = br.readLine()) != null){
+    System.out.println(linea);
+  }
+}</code></pre>
+<p>Estos temas son clave para crear aplicaciones completas capaces de persistir datos y ofrecer interfaces interactivas al usuario.</p>
+</div>
+</section>
+
+<section>
+<h2>Python · Fundamentos</h2>
+<div class="card">
+<h3>Estructuras de Control: Decisiones y Ciclos</h3>
+<p>Las estructuras de control son bloques que determinan el flujo lógico de un programa. En Python, las decisiones se implementan con <code>if</code>, <code>elif</code> y <code>else</code>. Los ciclos permiten repetir acciones mediante <code>for</code> y <code>while</code>.</p>
+<pre><code>x = 10
+if x > 0:
+    print("Positivo")
+elif x == 0:
+    print("Cero")
+else:
+    print("Negativo")
+
+for i in range(5):
+    print("Iteración", i)
+</code></pre>
+<p>Estos mecanismos son esenciales para el control del flujo en cualquier programa, permitiendo la toma de decisiones y la ejecución repetitiva de instrucciones.</p>
+</div>
+
+<div class="card">
+<h3>Listas, Tuplas y Diccionarios</h3>
+<p>Python ofrece estructuras de datos integradas muy potentes y flexibles:</p>
+<ul>
+<li><b>Listas:</b> colecciones ordenadas y mutables que permiten almacenar múltiples tipos de datos.</li>
+<li><b>Tuplas:</b> similares a las listas, pero inmutables, ideales para datos constantes.</li>
+<li><b>Diccionarios:</b> colecciones de pares clave-valor que permiten acceder rápidamente a la información.</li>
+</ul>
+<pre><code>lista = [1, 2, 3, 4]
+lista.append(5)
+for e in lista:
+    print(e)
+
+tupla = (10, 20)
+print("Tupla:", tupla)
+
+persona = {"nombre": "Ana", "edad": 25}
+print(persona["nombre"])
+</code></pre>
+<p>Estas estructuras son la base del manejo de datos en Python y se utilizan ampliamente en desarrollo web, análisis de datos y automatización.</p>
+</div>
+</section>
+</body>
+</html>
